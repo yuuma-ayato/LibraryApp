@@ -1,0 +1,20 @@
+<h1>貸出一覧</h1>
+<p><%= notice %></p>
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>貸出日</th>
+    <th>返却予定日</th>
+  </tr>
+  <tr>
+    <% @rentals.each do |rental| %>
+    <td><%= rental.book_name %></td>
+    <td><%= rental.lending_start_date %></td>
+    <td><%= rental.lending_end_date %></td>
+    <td><%= link_to '詳細', rental_path(rental.id) %></td>
+    <td><%= link_to "編集", edit_rental_path(rental.id), data: { confirm: '本当に編集していいですか？' } %></td>
+    <td><%= link_to '削除', rental_path(rental.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to '本を借りる', new_rental_path %>

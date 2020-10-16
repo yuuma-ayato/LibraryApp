@@ -10,7 +10,10 @@
     </div>
   <% end %>
 
-
+  <div class="rental">
+    <%= form.label :book_name %>
+    <%= form.text_field :book_name %>
+  </div>
   <div class="rental">
     <%= form.label :lending_start_date %>
     <%= form.date_field :lending_start_date %>
@@ -21,4 +24,4 @@
   </div>
   <%= form.submit %>
 <% end %>
-<%= link_to "図書一覧画面にもどる", books_path %>
+<%= link_to "貸出一覧画面にもどる", rentals_path %>
