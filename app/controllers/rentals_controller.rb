@@ -11,12 +11,11 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    @rental.user_id = current_user.id
     if params[:back]
       render :new
     else
       if @rental.save
-        redirect_to books_path, notice: "貸出日を登録しました！"
+        redirect_to rentals_path, notice: "貸出日を登録しました！"
       else
         render :new
       end
@@ -44,9 +43,7 @@ class RentalsController < ApplicationController
 
   private
   def rental_params
-    params.require(:rental).permit(
-        :lending_start_date,
-        :lending_end_date )
+    params.require(:rental).permit(:book_name, :lending_start_date, :lending_end_date )
   end
 
   def set_rental

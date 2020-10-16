@@ -7,7 +7,6 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-    @book.rentals.build
   end
 
   def create
@@ -24,7 +23,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    @rental = current_user.rentals.find_by(book_id: @book.id)
   end
 
   def edit
@@ -45,13 +43,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(
-      :title,
-      :author,
-      :content,
-      rentals:[
-        :lending_start_date,
-        :lending_end_date ])
+    params.require(:book).permit( :title, :author, :content )
   end
 
   def set_book
