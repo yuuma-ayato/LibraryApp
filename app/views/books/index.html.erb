@@ -20,6 +20,7 @@
     <td><%= link_to '詳細', book_path(book.id) %></td>
     <td><%= link_to "編集", edit_book_path(book.id), data: { confirm: '本当に編集していいですか？' } %></td>
     <td><%= link_to '削除', book_path(book.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to '貸出', new_rental_path(book) %></td>
   </tr>
   <% end %>
 </table>

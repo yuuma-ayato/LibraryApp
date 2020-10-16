@@ -1,15 +1,56 @@
 class RentalsController < ApplicationController
-  def create
-    rental = current_user.rentals.create(book_id: params[:book_id])
-    redirect_to books_url, notice: "本を借りました"
+  before_action :set_rental, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @rentals = Rental.all
   end
+
+  def new
+    @rental = Rental.new
+  end
+
+  def create
+    @rental = Rental.new(rental_params)
+    @rental.user_id = current_user.id
+    if params[:back]
+      render :new
+    else
+      if @rental.save
+        redirect_to books_path, notice: "貸出日を登録しました！"
+      else
+        render :new
+      end
+    end
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @rental.update(rental_params)
+      redirect_to @rental, notice: "貸出日を編集しました！"
+    else
+      render :edit
+    end
+  end
+
   def destroy
-    rental = current_user.rentals.find_by(id: params[:id]).destroy
-    redirect_to books_url, notice: "本を返却しました"
+    @rental.destroy
+    redirect_to rentals_path, notice:"貸出日を削除しました！"
   end
 
   private
   def rental_params
-    params.require(:rental).permit(:lending_start_date, :lending_end_date )
+    params.require(:rental).permit(
+        :lending_start_date,
+        :lending_end_date )
   end
+
+  def set_rental
+    @rental = Rental.find(params[:id])
+  end
+
 end
