@@ -1,0 +1,13 @@
+<h1>本詳細画面</h1>
+<p><%= notice %></p>
+<p>タイトル: <%= @book.title %></p>
+<p>著者: <%= @book.author %></p>
+<p>内容: <%= @book.content %></p>
+
+<% if @rental.present? %>
+    <%= link_to '本を返却する', rental_path(id: @rental.id), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to '本を借りる', rentals_path(book_id: @book.id), method: :post, class: 'btn btn-primary' %>
+  <% end %>
+
+<%= link_to "図書一覧画面にもどる", books_path %>

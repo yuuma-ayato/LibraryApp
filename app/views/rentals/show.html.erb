@@ -1,0 +1,9 @@
+<h1>本詳細画面</h1>
+<p><%= notice %></p>
+<p>タイトル: <%= @book.title %></p>
+<p>著者: <%= @book.author %></p>
+<p>内容: <%= @book.content %></p>
+<p>貸出し日: <%= @book.rental.lending_start_date %></p>
+<p>返却予定日: <%= @book.rental.lending_end_date %></p>
+
+<%= link_to "図書一覧画面にもどる", books_path %>

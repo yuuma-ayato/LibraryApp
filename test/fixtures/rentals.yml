@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lending_start_date: 2020-10-16
+  lending_end_date: 2020-10-16
+
+two:
+  lending_start_date: 2020-10-16
+  lending_end_date: 2020-10-16

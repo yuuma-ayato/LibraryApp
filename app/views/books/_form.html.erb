@@ -1,0 +1,36 @@
+<%= form_with(model: @book, local: true ) do |form| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @book.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="book_title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="book_author">
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+  </div>
+  <div class="book_content">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+  <%= form.fields_for :rentals do |rental| %>
+  <div class="rental">
+    <%= rental.label :lending_start_date %>
+    <%= rental.date_field :lending_start_date %>
+  </div>
+  <div class="rental">
+    <%= rental.label :lending_end_date %>
+    <%= rental.date_field :lending_end_date %>
+  </div>
+<% end %>
+  <%= form.submit %>
+<% end %>
+<%= link_to "図書一覧画面にもどる", books_path %>
